@@ -6,7 +6,7 @@ def summarize_wrapper(video_input):
     try:
         result = summarize_module.summarize_video(video_input, "summary_output.mp4")
 
-        # ĐỌC VIDEO → TRẢ VỀ DẠNG BYTES ĐỂ HIỂN THỊ
+        
         with open(result["output_path"], "rb") as f:
             video_bytes = f.read()
 
