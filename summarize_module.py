@@ -1,4 +1,3 @@
-# summarize_module.py
 import cv2
 import numpy as np
 import os
@@ -80,7 +79,7 @@ def select_keyframes_in_shot(frames, indices, scores, k=KEYFRAMES_PER_SHOT):
         return []
     feats = np.array([frame_feature_hist(frames[i]) for i in indices])
     if len(indices) <= k:
-        # return top-k by motion score (deterministic)
+       
         sorted_by_score = sorted(indices, key=lambda i: scores[i] if i < len(scores) else 0, reverse=True)
         return sorted_by_score[:k]
     # cluster
@@ -122,7 +121,7 @@ def create_summary_video(frames, keyframe_indices, out_path,
     frames_per_key = max(1, int(fps_out * seconds_per_key))
 
     for idx in keyframe_indices:
-        # safety index clamp
+        
         if idx < 0:
             idx = 0
         if idx >= len(frames):
@@ -134,7 +133,7 @@ def create_summary_video(frames, keyframe_indices, out_path,
 
     writer.release()
 
-    # verify
+    
     if not os.path.exists(out_path) or os.path.getsize(out_path) < 1000:
         raise IOError(f"Output video not written or empty: {out_path}")
     return out_path
@@ -166,9 +165,9 @@ def _resolve_input_path(video_input):
     if isinstance(video_input, str):
         return video_input
     if isinstance(video_input, dict):
-        # new gradio sometimes returns {'name': '/tmp/..', 'data': '/tmp/...'}
+        
         return video_input.get("name") or video_input.get("data")
-    # fallback: try to convert
+    
     try:
         return str(video_input)
     except Exception:
@@ -213,7 +212,7 @@ def summarize_video(video_input, output_path="summary_output.mp4", gt_intervals=
         if len(indices) == 0:
             continue
         chosen = select_keyframes_in_shot(frames, indices, scores, k=KEYFRAMES_PER_SHOT)
-        # fallback fill
+        
         if len(chosen) < KEYFRAMES_PER_SHOT:
             sorted_by_score = sorted(indices, key=lambda i: scores[i] if i < len(scores) else 0, reverse=True)
             for cand in sorted_by_score:
