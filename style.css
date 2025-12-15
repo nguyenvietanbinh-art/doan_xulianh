@@ -1,0 +1,46 @@
+.header-text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-text h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- Set Up Status Box --- */
+.status-box {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #eff6ff !important; 
+    border-left: 5px solid #3b82f6;       
+    color: #1e3a8a !important;            
+}
+
+/* Status Box Dark Mode */
+.dark .status-box {
+    background-color: #1e1b4b !important; 
+    border-left: 5px solid #6366f1;       
+    color: #e0e7ff !important;            
+}
+
+.status-box * {
+    color: inherit !important;
+}
+
+.status-box code {
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.status-box code {
+    background-color: rgba(255,255,255, 0.7);
+    color: #d946ef !important; 
+}
+.dark .status-box code {
+    background-color: rgba(0,0,0, 0.3);
+    color: #f0abfc !important;
+}
